@@ -3,13 +3,13 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [input, setInput] = useState("");
 
-  useEffect(() => {
+   if (todos.length === 0) {
     chrome.storage.local.get(["todos"], (res) => {
       if (res.todos) setTodos(res.todos);
     });
-  }, []);
+  }
+  const [input, setInput] = useState("");
 
   const addTodo = () => {
     if (!input) return;
